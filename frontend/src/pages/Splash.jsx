@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/LOGO.svg"
 
 export default function Splash() {
   const navigate = useNavigate();
@@ -36,7 +37,12 @@ export default function Splash() {
       <div className="relative z-10 flex flex-col items-center">
         {/* Logo */}
         <div className="w-24 h-24 bg-sky-500 rounded-3xl flex items-center justify-center shadow-lg shadow-sky-500/30 mb-6 animate-bounce-slow">
-          <span className="text-6xl font-bold text-white">M</span>
+          {/* <span className="text-6xl font-bold text-white">M</span> */}
+          <img
+            src={logo}
+            alt="MahasigMind"
+            className="w-32 h-32 drop-shadow-lg"
+          />
         </div>
 
         {/* Text */}
