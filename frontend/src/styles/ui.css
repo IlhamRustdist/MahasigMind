@@ -1,0 +1,15 @@
+.btn-primary {
+  width: 100%;
+  background: #5EC6FF;
+  padding: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  color: white;
+}
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: white;
+}

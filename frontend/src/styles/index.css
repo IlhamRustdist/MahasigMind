@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.heading-dynamic {
+  background: linear-gradient(90deg, #0ea5e9, #2563eb, #0ea5e9);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 400ms ease-out forwards;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+  opacity: 0;
+}
+
+@import "tailwindcss";
+
+@keyframes neon-glow {
+
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px rgba(56, 189, 248, 0.6),
+      0 0 20px rgba(56, 189, 248, 0.8),
+      0 0 40px rgba(56, 189, 248, 0.9);
+  }
+
+  50% {
+    text-shadow:
+      0 0 4px rgba(56, 189, 248, 0.5),
+      0 0 12px rgba(56, 189, 248, 0.7),
+      0 0 24px rgba(56, 189, 248, 0.9);
+  }
+}
+
+@theme {
+  --animate-neon-glow: neon-glow 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-60%);
+  }
+
+  50% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(60%);
+  }
+}
+
+@theme {
+  --animate-loading-bar: loading-bar 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes loading-bar-fill {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@theme {
+  --animate-loading-bar: loading-bar-fill 2.2s ease-out forwards;
+}

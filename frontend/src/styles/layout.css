@@ -1,0 +1,22 @@
+.topbar {
+  padding: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 430px;
+  background: #fff;
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #e6e6e6;
+}
+.login-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -1,0 +1,6 @@
+.mobile-layout {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #F2F8FF; /* warna utama Figma */
+}
