@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/LOGO.svg";
 
 export default function Splash() {
   const navigate = useNavigate();
@@ -29,28 +30,30 @@ export default function Splash() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sky-500 to-blue-600 flex flex-col items-center justify-center relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse" />
 
       <div className="relative z-10 flex flex-col items-center">
-        {/* Logo */}
-        <div className="w-24 h-24 bg-sky-500 rounded-3xl flex items-center justify-center shadow-lg shadow-sky-500/30 mb-6 animate-bounce-slow">
-          <span className="text-6xl font-bold text-white">M</span>
-        </div>
+        {/* Logo SVG */}
+        <img
+          src={logo}
+          alt="MahasigMind"
+          className="w-40 h-40 md:w-52 md:h-52 object-contain drop-shadow-2xl mb-6 animate-bounce-slow"
+        />
 
         {/* Text */}
-        <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">MahasigMind</h1>
-        <p className="text-slate-400 text-sm mb-12">Teman kesehatan mental mahasiswa</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">MahasigMind</h1>
+        <p className="text-white/80 text-sm md:text-base mb-12">Teman kesehatan mental mahasiswa</p>
 
         {/* Loading Bar */}
-        <div className="w-64 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+        <div className="w-64 md:w-80 h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur">
           <div
-            className="h-full bg-sky-500 rounded-full transition-all duration-75 ease-out shadow-[0_0_10px_rgba(14,165,233,0.5)]"
+            className="h-full bg-white rounded-full transition-all duration-75 ease-out shadow-lg"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <p className="text-xs text-slate-500 mt-2 font-mono">{progress}%</p>
+        <p className="text-xs text-white/60 mt-3 font-mono">{progress}%</p>
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import AppShell from "../components/layout/AppShell";
 import { ChevronLeftIcon, ChevronRightIcon, ChatBubbleLeftRightIcon, BookOpenIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/AuthContext";
 
+import { logClientEvent } from "../utils/logger";
+
 const articles = [
   { id: 1, title: "Mengelola stres sebelum ujian", excerpt: "Tips praktis menenangkan pikiran menjelang hari H.", image: "bg-blue-100" },
   { id: 2, title: "Cara membangun kebiasaan journaling", excerpt: "Mulai dari 3 menit sehari untuk mengenali dirimu.", image: "bg-purple-100" },
@@ -54,10 +56,10 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  // Reset burst animation
+  // Reset burst animation with extended duration
   useEffect(() => {
     if (!burst) return;
-    const t = setTimeout(() => setBurst(false), 1000);
+    const t = setTimeout(() => setBurst(false), 800); // 800ms for full animation
     return () => clearTimeout(t);
   }, [burst]);
 
@@ -83,6 +85,11 @@ export default function Home() {
       const data = await res.json();
       if (data.success) {
         setMoodRecorded(true);
+        logClientEvent('MOOD_SAVED', {
+          mood: m.label,
+          timestamp: new Date().toISOString(),
+          withBurst: true
+        });
       }
     } catch (err) {
       console.error("Failed to save mood", err);
@@ -126,24 +133,36 @@ export default function Home() {
                   </button>
                 ))}
 
-                {/* Emoji Burst Animation */}
+
+                {/* Enhanced Emoji Burst Animation */}
                 {burst && (
-                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                    {Array.from({ length: 12 }).map((_, i) => (
-                      <span
-                        key={i}
-                        className="absolute text-2xl animate-emoji-burst"
-                        style={{
-                          '--tx': `${(Math.random() - 0.5) * 150}px`,
-                          '--ty': `${(Math.random() - 0.5) * 150}px`,
-                          '--r': `${Math.random() * 360}deg`,
-                          left: '50%',
-                          top: '50%',
-                        }}
-                      >
-                        {moods.find((m) => m.id === selectedMood)?.emoji}
-                      </span>
-                    ))}
+                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-visible">
+                    {Array.from({ length: 20 }).map((_, i) => {
+                      const angle = (i / 20) * 360;
+                      const distance = 80 + Math.random() * 40;
+                      const tx = Math.cos((angle * Math.PI) / 180) * distance;
+                      const ty = Math.sin((angle * Math.PI) / 180) * distance;
+                      const rotation = Math.random() * 360;
+                      const scale = 0.6 + Math.random() * 0.4;
+
+                      return (
+                        <span
+                          key={i}
+                          className="absolute text-2xl animate-emoji-burst"
+                          style={{
+                            '--tx': `${tx}px`,
+                            '--ty': `${ty}px`,
+                            '--r': `${rotation}deg`,
+                            '--s': scale,
+                            left: '50%',
+                            top: '50%',
+                            transform: 'translate(-50%, -50%)',
+                          }}
+                        >
+                          {moods.find((m) => m.id === selectedMood)?.emoji}
+                        </span>
+                      );
+                    })}
                   </div>
                 )}
               </div>
