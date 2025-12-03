@@ -1,6 +1,6 @@
-import MobileLayout from "../components/Layout/MobileLayout";
-import TopBar from "../components/Layout/TopBar";
-import BottomNav from "../components/Layout/BottomNav";
+import MobileLayout from "../components/layout/MobileLayout";
+import TopBar from "../components/layout/TopBar";
+import BottomNav from "../components/layout/BottomNav";
 
 import { useState } from "react";
 import axios from "axios";
